@@ -1,6 +1,7 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import { useAuthStore } from "../store/authStore";
 import type { Message } from "../types";
+const WS_BASE_URL = import.meta.env.VITE_WS_URL || "ws://localhost:8080";
 
 interface UseWebSocketOptions {
   roomId: string;
@@ -43,7 +44,7 @@ export const useWebSocket = ({
     }
 
     isConnecting.current = true;
-    const wsUrl = `ws://localhost:8080/api/v1/ws?room_id=${roomId}&username=${user.username}&token=${token}`;
+    const wsUrl = `${WS_BASE_URL}/api/v1/ws?room_id=${roomId}&username=${user.username}&token=${token}`;
 
     console.log("🔄 Connecting to:", roomId);
 

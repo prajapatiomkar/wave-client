@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { User } from "../types";
@@ -13,7 +12,7 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set, _get) => ({
+    (set) => ({
       user: null,
       token: null,
       isAuthenticated: false,
@@ -26,6 +25,10 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: "auth-storage",
+      // Optional: Add onRehydrateStorage to handle hydration
+      onRehydrateStorage: () => (state) => {
+        console.log("Auth store hydrated:", state?.isAuthenticated);
+      },
     }
   )
 );

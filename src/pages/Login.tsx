@@ -30,7 +30,6 @@ export const Login = () => {
       navigate("/");
     }
   }, [isAuthenticated, navigate]);
-
   const onSubmit = (data: LoginFormData) => {
     login(data);
   };

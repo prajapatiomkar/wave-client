@@ -24,3 +24,20 @@ export interface RegisterRequest {
   password: string;
   full_name?: string;
 }
+
+export interface Message {
+  id?: number;
+  type: string;
+  content: string;
+  room_id: string;
+  user_id: number;
+  username: string;
+  avatar?: string;
+  created_at: string;
+}
+
+export interface SendMessageData {
+  type: string;
+  content: string;
+  room_id: string;
+}
